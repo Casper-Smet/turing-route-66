@@ -9,7 +9,9 @@ class RoadModel(Model):
     def __init__(self, N, length, lanes=1):
         self.num_agents = N 
         self.grid = SingleGrid(length, lanes, True)
-        self.schedule = StagedActivation(self)
+        model_stages = ["acceleration", "braking", "randomisation", "move"]
+        self.schedule = StagedActivation(self, stage_list=model_stages)
+
 
         # Create agent
         for i in range(self.num_agents):
