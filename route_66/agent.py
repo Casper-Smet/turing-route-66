@@ -24,7 +24,7 @@ class CarAgent(Agent):
         """If an agent's velocity is greater than 1, 
         it may slow down by one unit of velocity randomly with a probability of CarAgent.p"""
         if self.velocity > 1:
-            if self.random.random() > CarAgent.p:
+            if self.random.random() < CarAgent.p:
                 self.velocity -= 1
         
         return self.velocity
