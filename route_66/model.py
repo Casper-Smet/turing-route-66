@@ -1,3 +1,5 @@
+from agent import CarAgent
+
 from mesa.space import SingleGrid
 from mesa.time import StagedActivation
 from mesa import Model
@@ -8,6 +10,15 @@ class RoadModel(Model):
         self.num_agents = N 
         self.grid = SingleGrid(length, lanes, True)
         self.schedule = StagedActivation(self)
+
+        # Create agent
+        for i in range(self.num_agents):
+            a = CarAgent(i, self)
+            # Add to schedule
+            self.schedule.add(a)
+            # Add to grid (randomly)
+            self.grid.position_agent(a)
+
 
     def step(self):
         pass
