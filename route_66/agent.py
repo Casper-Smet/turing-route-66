@@ -1,4 +1,5 @@
 from mesa import Agent
+import mesa.space
 
 
 class CarAgent(Agent):
@@ -31,4 +32,8 @@ class CarAgent(Agent):
         return self.velocity
 
     def move(self):
-        pass
+        x, y = self.pos
+        new_pos = (x + self.velocity, y)
+        new_pos = self.model.grid.torus_adj(new_pos)
+        # x, y = self.pos[0] + self.velocity, self.pos[1]
+        self.model.grid.move_agent(self, new_pos)
