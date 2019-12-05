@@ -9,9 +9,9 @@ from mesa.datacollection import DataCollector
 class RoadModel(Model):
     """A model with a number of cars, Nagel-Schreckenberg"""
 
-    def __init__(self, N, length, lanes=1):
+    def __init__(self, N, length=60, lanes=1):
         self.num_agents = N
-        self.grid = SingleGrid(length, lanes, True)
+        self.grid = SingleGrid(length, lanes, torus=True)
         model_stages = ["acceleration", "braking", "randomisation", "move"]
         self.schedule = StagedActivation(self, stage_list=model_stages)
 
@@ -26,6 +26,8 @@ class RoadModel(Model):
         self.datacollector = DataCollector(agent_reporters={
             "Position": "pos",
             "Velocity": "velocity"})
+
+        self.running = True
 
     def step(self):
         self.datacollector.collect(self)
