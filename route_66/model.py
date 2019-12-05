@@ -1,8 +1,9 @@
-from agent import CarAgent
+from route_66.agent import CarAgent
 
+from mesa import Model
 from mesa.space import SingleGrid
 from mesa.time import StagedActivation
-from mesa import Model
+from mesa.datacollection import DataCollector
 
 class RoadModel(Model):
     """A model with a number of cars, Nagel-Schreckenberg"""
@@ -21,6 +22,10 @@ class RoadModel(Model):
             # Add to grid (randomly)
             self.grid.position_agent(a)
 
+        self.datacollector = DataCollector(agent_reporters={
+            "Position" : "pos", 
+            "Velocity" : "velocity"})
 
     def step(self):
+        self.datacollector.collect(self)
         self.schedule.step()
