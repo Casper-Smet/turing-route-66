@@ -7,7 +7,7 @@ class CarAgent(Agent):
     p = 0.5
     
     def __init__(self, unique_id, model):
-        super.__init__(unique_id, model)
+        super().__init__(unique_id, model)
         self.velocity = CarAgent.init_velocity
 
     def acceleration(self):
@@ -24,7 +24,7 @@ class CarAgent(Agent):
         """If an agent's velocity is greater than 1, 
         it may slow down by one unit of velocity randomly with a probability of CarAgent.p"""
         if self.velocity > 1:
-            if self.random.random(1) > CarAgent.p:
+            if self.random.random() > CarAgent.p:
                 self.velocity -= 1
         
         return self.velocity
