@@ -20,7 +20,16 @@ class CarAgent(Agent):
         return self.velocity
 
     def braking(self):
-        pass
+        """If the distance between an agent and the agent in front of it is smaller than the velocity
+        the velocity is reduced to the number of emtpy cells in front of the car"""
+        x, y = self.pos
+        for i in range(1, self.velocity + 1):
+            x0, y0 = self.model.grid.torus_adj((x + i, y))
+            if not self.model.grid.is_cell_empty((x0, y0)):
+                self.velocity = i
+                break
+
+        return self.velocity
 
     def randomisation(self):
         """If an agent's velocity is greater than 1, 
