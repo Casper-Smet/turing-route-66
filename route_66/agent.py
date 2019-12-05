@@ -26,7 +26,7 @@ class CarAgent(Agent):
         for i in range(1, self.velocity + 1):
             x0, y0 = self.model.grid.torus_adj((x + i, y))
             if not self.model.grid.is_cell_empty((x0, y0)):
-                self.velocity = i
+                self.velocity = i - 1
                 break
 
         return self.velocity
@@ -41,8 +41,9 @@ class CarAgent(Agent):
         return self.velocity
 
     def move(self):
+        """The agent is moved forward the number of cells equal to their velocity"""
         x, y = self.pos
         new_pos = (x + self.velocity, y)
         new_pos = self.model.grid.torus_adj(new_pos)
-        # x, y = self.pos[0] + self.velocity, self.pos[1]
+
         self.model.grid.move_agent(self, new_pos)
