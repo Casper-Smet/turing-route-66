@@ -12,7 +12,7 @@ if 0:  # Change to 1 for plot
     agent0 = velocities.reset_index()
     agent0 = agent0[agent0["AgentID"] == 0]
     agent0.set_index("Step", inplace=True)
-    
+
     print(agent0.head())
     agent0[["Velocity"]].plot()
     plt.show()
