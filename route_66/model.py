@@ -1,4 +1,5 @@
 from mesa.space import SingleGrid
+from mesa.time import StagedActivation
 from mesa import Model
 
 class RoadModel(Model):
@@ -6,7 +7,7 @@ class RoadModel(Model):
     def __init__(self, N, length, lanes=1):
         self.num_agents = N 
         self.grid = SingleGrid(length, lanes, True)
-        # Time tbd
+        self.schedule = StagedActivation(self)
 
     def step(self):
         pass
