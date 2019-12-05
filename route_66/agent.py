@@ -1,11 +1,12 @@
 from mesa import Agent
 
+
 class CarAgent(Agent):
     """An agent with a velocity of 1-5 and a position. Random initial velocity"""
     init_velocity = 1
     max_velocity = 5
     p = 0.5
-    
+
     def __init__(self, unique_id, model):
         super().__init__(unique_id, model)
         self.velocity = CarAgent.init_velocity
@@ -26,7 +27,7 @@ class CarAgent(Agent):
         if self.velocity > 1:
             if self.random.random() < CarAgent.p:
                 self.velocity -= 1
-        
+
         return self.velocity
 
     def move(self):
