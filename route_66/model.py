@@ -23,4 +23,4 @@ class RoadModel(Model):
 
 
     def step(self):
-        pass
+        self.schedule.step()
