@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Package: route_66 &#8212; Turing Route 66 2019.12.06.1 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to Turing Route 66’s documentation!" href="index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to Turing Route 66’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Turing Route 66 2019.12.06.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="package-route-66">
+<h1>Package: route_66<a class="headerlink" href="#package-route-66" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-route_66.agent">
+<span id="module-route-66-agent"></span><h2>Module: route_66.agent<a class="headerlink" href="#module-route_66.agent" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="route_66.agent.CarAgent">
+<em class="property">class </em><code class="sig-prename descclassname">route_66.agent.</code><code class="sig-name descname">CarAgent</code><span class="sig-paren">(</span><em class="sig-param">unique_id</em>, <em class="sig-param">model</em><span class="sig-paren">)</span><a class="headerlink" href="#route_66.agent.CarAgent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">mesa.agent.Agent</span></code></p>
+<p>An agent with a velocity of 1-5 and a position. Random initial velocity</p>
+<dl class="method">
+<dt id="route_66.agent.CarAgent.acceleration">
+<code class="sig-name descname">acceleration</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#route_66.agent.CarAgent.acceleration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Increases velocity by one unit if it is smaller than CarAgent.max_velocity</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="route_66.agent.CarAgent.braking">
+<code class="sig-name descname">braking</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#route_66.agent.CarAgent.braking" title="Permalink to this definition">¶</a></dt>
+<dd><p>If the distance between an agent and the agent in front of it is smaller than the velocity
+the velocity is reduced to the number of emtpy cells in front of the car</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="route_66.agent.CarAgent.init_velocity">
+<code class="sig-name descname">init_velocity</code><em class="property"> = 5</em><a class="headerlink" href="#route_66.agent.CarAgent.init_velocity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="route_66.agent.CarAgent.max_velocity">
+<code class="sig-name descname">max_velocity</code><em class="property"> = 5</em><a class="headerlink" href="#route_66.agent.CarAgent.max_velocity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="route_66.agent.CarAgent.move">
+<code class="sig-name descname">move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#route_66.agent.CarAgent.move" title="Permalink to this definition">¶</a></dt>
+<dd><p>The agent is moved forward the number of cells equal to their velocity</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="route_66.agent.CarAgent.p">
+<code class="sig-name descname">p</code><em class="property"> = 0.5</em><a class="headerlink" href="#route_66.agent.CarAgent.p" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="route_66.agent.CarAgent.randomisation">
+<code class="sig-name descname">randomisation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#route_66.agent.CarAgent.randomisation" title="Permalink to this definition">¶</a></dt>
+<dd><p>If an agent’s velocity is greater than 1, 
+it may slow down by one unit of velocity randomly with a probability of CarAgent.p</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-route_66.model">
+<span id="module-route-66-model"></span><h2>Module: route_66.model<a class="headerlink" href="#module-route_66.model" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="route_66.model.RoadModel">
+<em class="property">class </em><code class="sig-prename descclassname">route_66.model.</code><code class="sig-name descname">RoadModel</code><span class="sig-paren">(</span><em class="sig-param">N</em>, <em class="sig-param">length=60</em>, <em class="sig-param">lanes=1</em><span class="sig-paren">)</span><a class="headerlink" href="#route_66.model.RoadModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">mesa.model.Model</span></code></p>
+<p>A model with a number of cars, Nagel-Schreckenberg</p>
+<dl class="method">
+<dt id="route_66.model.RoadModel.step">
+<code class="sig-name descname">step</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#route_66.model.RoadModel.step" title="Permalink to this definition">¶</a></dt>
+<dd><p>A single step. Fill in here.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-route_66.server">
+<span id="module-route-66-server"></span><h2>Module: route_66.server<a class="headerlink" href="#module-route_66.server" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="route_66.server.car_portrayal">
+<code class="sig-prename descclassname">route_66.server.</code><code class="sig-name descname">car_portrayal</code><span class="sig-paren">(</span><em class="sig-param">agent</em><span class="sig-paren">)</span><a class="headerlink" href="#route_66.server.car_portrayal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-route_66.visualisation">
+<span id="module-route-66-visualisation"></span><h2>Module: route_66.visualisation<a class="headerlink" href="#module-route_66.visualisation" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="route_66.visualisation.plot">
+<code class="sig-prename descclassname">route_66.visualisation.</code><code class="sig-name descname">plot</code><span class="sig-paren">(</span><em class="sig-param">steps</em>, <em class="sig-param">N</em>, <em class="sig-param">length=100</em>, <em class="sig-param">lanes=1</em>, <em class="sig-param">p=0.5</em>, <em class="sig-param">grid=False</em><span class="sig-paren">)</span><a class="headerlink" href="#route_66.visualisation.plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Visualises the development of traffic throughput</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Package: route_66</a><ul>
+<li><a class="reference internal" href="#module-route_66.agent">Module: route_66.agent</a></li>
+<li><a class="reference internal" href="#module-route_66.model">Module: route_66.model</a></li>
+<li><a class="reference internal" href="#module-route_66.server">Module: route_66.server</a></li>
+<li><a class="reference internal" href="#module-route_66.visualisation">Module: route_66.visualisation</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to Turing Route 66’s documentation!</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/route_66.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to Turing Route 66’s documentation!"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Turing Route 66 2019.12.06.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Stan Meyberg, Thijs van den Berg, Casper Smet.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.2.
+    </div>
+  </body>
+</html>
