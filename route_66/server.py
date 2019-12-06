@@ -5,8 +5,9 @@ from mesa.visualization.UserParam import UserSettableParameter
 from route_66.model import RoadModel
 from route_66.agent import CarAgent
 
-# Blue
-blue = "#3349FF"
+# color spectrum from red to blue
+colour_spectrum = ["#ff3333", "#ffb133", "#92ff33", "#33ffc9", "#3366ff"]
+
 
 def car_portrayal(agent):
     if agent is None:
@@ -19,9 +20,12 @@ def car_portrayal(agent):
         portrayal["r"] = .9
         portrayal["Layer"] = 0
         portrayal["Filled"] = "true"
-        portrayal["Color"] = blue
+
+        # change the agents color to its velocity
+        portrayal["Color"] = colour_spectrum[agent.velocity - 1]
 
     return portrayal
+
 
 model_params = {"N" : UserSettableParameter("slider", "Cars", 1, 1, 100,
                                             description="Number of cars")}
