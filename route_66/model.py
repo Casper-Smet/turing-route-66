@@ -10,7 +10,7 @@ import numpy as np
 class RoadModel(Model):
     """A model with a number of cars, Nagel-Schreckenberg"""
 
-    def __init__(self, N, length=60, lanes=1):
+    def __init__(self, N, length=100, lanes=1):
         self.num_agents = N
         self.grid = SingleGrid(length, lanes, torus=True)
         model_stages = ["acceleration", "braking", "randomisation", "move"]
