@@ -25,6 +25,7 @@ class CarAgent(Agent):
         x, y = self.pos
         for i in range(1, self.velocity + 1):
             x0, y0 = self.model.grid.torus_adj((x + i, y))
+
             if not self.model.grid.is_cell_empty((x0, y0)):
                 self.velocity = i - 1
                 break
