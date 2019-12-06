@@ -18,18 +18,18 @@ class RoadModel(Model):
 
         # Create agent
         for i in range(self.num_agents):
-            a = CarAgent(i, self)
+            agent = CarAgent(i, self)
             # Add to schedule
-            self.schedule.add(a)
+            self.schedule.add(agent)
             # Add to grid (randomly)
-            self.grid.position_agent(a)
+            self.grid.position_agent(agent)
 
         self.average_velocity = CarAgent.init_velocity
         self.datacollector = DataCollector(agent_reporters={
             "Position": "pos",
-            "Velocity": "velocity"}, 
+            "Velocity": "velocity"},
             model_reporters={
-            "Average Velocity" : "average_velocity"})
+            "Average Velocity": "average_velocity"})
 
         self.running = True
 
