@@ -4,7 +4,7 @@ import mesa.space
 
 class CarAgent(Agent):
     """An agent with a velocity of 1-5 and a position. Random initial velocity"""
-    init_velocity = 1
+    init_velocity = 5
     max_velocity = 5
     p = 0.5
 
