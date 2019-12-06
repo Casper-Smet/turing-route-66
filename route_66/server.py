@@ -27,10 +27,10 @@ def car_portrayal(agent):
     return portrayal
 
 
-model_params = {"N" : UserSettableParameter("slider", "Cars", 1, 1, 59,
+model_params = {"N" : UserSettableParameter("slider", "Cars", 1, 1, 99,
                                             description="Number of cars")}
 
-canvas_element = CanvasGrid(car_portrayal, 60, 1, 500, 10)
+canvas_element = CanvasGrid(car_portrayal, 100, 1, 800, 10)
 
 chart_element = ChartModule([{"Label" : "Average Velocity", "Color" : colour_spectrum[4]}])
 
