@@ -51,6 +51,8 @@ class RoadModel(Model):
         self.datacollector.collect(self)
         # Run next step
         self.schedule.step()
+        # Run a step of the traffic light
+        self.traffic_light.step()
 
     def add_agent(self, label, x_corr):
         """Adds an agent to the scheduler and model on a particular coordinate"""
