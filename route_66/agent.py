@@ -78,6 +78,9 @@ class TrafficLight(object):
             # merge the cars
             self.merging_cars()
 
+        # add a certain amount of agents to the waiting queue
+        self.wait_queue.extend([1 for x in range(self.new_agents_to_queue())])
+        # update the counter
         self.counter += 1
 
     def get_free_space(self):
@@ -127,3 +130,8 @@ class TrafficLight(object):
             else:
                 # no room for merging
                 break
+
+    def new_agents_to_queue(self):
+        """A function to generate an amount of agents per step to wait before the light"""
+        new_cars = 1
+        return new_cars
