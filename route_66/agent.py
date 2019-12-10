@@ -75,3 +75,5 @@ class TrafficLight(Agent):
                 x += 2
             else:
                 x += 1
+
+        return empty_spaces
