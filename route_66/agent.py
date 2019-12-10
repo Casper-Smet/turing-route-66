@@ -73,6 +73,8 @@ class TrafficLight(object):
             self.counter = 0
             # update the queues
             self.update_queues()
+            # merge the cars
+            self.merging_cars()
 
         self.counter += 1
 
@@ -95,18 +97,31 @@ class TrafficLight(object):
 
     def update_queues(self):
         """Update the queues on both sides of the traffic light"""
-        # add a certain amount of cars to the on ramp
+        # add a certain amount of agents to the on ramp
         self.on_ramp_queue.extend([1 for x in range(self.cars_amount)])
-        # update the wait queue by removing the cars that went onto the on ramp
+        # update the wait queue by removing the agents that went onto the on ramp
         self.wait_queue = self.wait_queue[self.cars_amount:]
 
     def merging_cars(self):
-        """"""
+        """Checks if there are agents on the on ramp and if there is room to merge to the main road
+        Adds the agents to the main road and updates the on ramp queue"""
         empty_spaces = self.get_free_space()
 
         while len(self.on_ramp_queue) > 0:
-
+            # There exist some agents on the on ramp to merge
             if len(empty_spaces) > 0:
-                pass
+                # there is room for merging
+
+                # get the x-coordinate for the merge
+                x_corr = empty_spaces.pop()
+                # get the label for the agent
+                new_label = f"tf_{self.current_car_id}"
+                self.current_car_id += 1
+
+                # add the new agent to the model
+                self.model.add_agent(new_label, x_corr)
+                # update the on_ramp_queue
+                self.on_ramp_queue.pop()
             else:
+                # no room for merging
                 break

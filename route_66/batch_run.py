@@ -13,7 +13,7 @@ def run_batch():
     }
 
     variable_params = {"N": [35, 50, 80],
-                       "timer": range(2, 10)}
+                       "timer": range(0, 10)}
 
     # The variables parameters will be invoke along with the fixed parameters allowing for either or both to be honored.
     batch_run = BatchRunner(
@@ -27,14 +27,16 @@ def run_batch():
 
     batch_run.run_all()
 
-    run_data = batch_run.get_model_vars_dataframe().groupby("N")
-    groups = [run_data.get_group(x) for x in run_data.groups]
+    run_data = batch_run.get_model_vars_dataframe()
+    print(run_data.tail())
+    run_data_gb = run_data.groupby("N")
+    groups = [run_data_gb.get_group(x) for x in run_data_gb.groups]
 
     fig, ax = plt.subplots()
 
     ns = [35, 50, 80]
     for group, n in zip(groups, ns):
-        ax.scatter(np.arange(0, 40), group["Average Velocity"], label=n)
+        ax.scatter(np.arange(0, 50), group["Average Velocity"], label=n)
 
     plt.legend()
     plt.xlabel("Run")
