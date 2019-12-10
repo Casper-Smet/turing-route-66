@@ -48,3 +48,30 @@ class CarAgent(Agent):
         new_pos = self.model.grid.torus_adj(new_pos)
 
         self.model.grid.move_agent(self, new_pos)
+
+
+class TrafficLight(Agent):
+    merge_begin = 10
+    merge_end = 30
+
+    def __init__(self, unique_id, model):
+        super().__init__(unique_id, model)
+        self.queue = []
+
+    def step(self):
+        pass
+
+    def get_free_space(self):
+        """Checks if there exists some empty cells for an agent to merge into the main ramp
+        Returns all the cells that are free for the agents on the on ramp to merge into"""
+        empty_spaces = []
+        x = TrafficLight.merge_begin
+
+        while TrafficLight.merge_begin <= x <= TrafficLight.merge_end:
+            # while the cell runs parallel to the main road
+            if self.model.grid.is_cell_empty((x, 0)) and self.model.grid.is_cell_empty((x + 1, 0)):
+                # if the current cell and the next cell are empty append the next cell
+                empty_spaces.append(x + 1)
+                x += 2
+            else:
+                x += 1
