@@ -9,6 +9,14 @@ Module: route_66.agent
     :undoc-members:
     :show-inheritance:
 
+Module: route_66.batch_run
+--------------------------------
+
+.. automodule:: route_66.batch_run
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 Module: route_66.model
 --------------------------------
 

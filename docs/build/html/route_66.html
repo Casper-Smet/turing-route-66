@@ -91,14 +91,89 @@ it may slow down by one unit of velocity randomly with a probability of CarAgent
 
 </dd></dl>
 
+<dl class="class">
+<dt id="route_66.agent.TrafficLight">
+<em class="property">class </em><code class="sig-prename descclassname">route_66.agent.</code><code class="sig-name descname">TrafficLight</code><span class="sig-paren">(</span><em class="sig-param">unique_id</em>, <em class="sig-param">model</em>, <em class="sig-param">timer</em>, <em class="sig-param">ca</em><span class="sig-paren">)</span><a class="headerlink" href="#route_66.agent.TrafficLight" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A traffic light that holds a list with waiting cars and cars that want to merge to the main road</p>
+<dl class="method">
+<dt id="route_66.agent.TrafficLight.get_free_space">
+<code class="sig-name descname">get_free_space</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#route_66.agent.TrafficLight.get_free_space" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if there exists some empty cells for an agent to merge into the main ramp
+Returns all the cells that are free for the agents on the on ramp to merge into</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="route_66.agent.TrafficLight.merge_begin">
+<code class="sig-name descname">merge_begin</code><em class="property"> = 10</em><a class="headerlink" href="#route_66.agent.TrafficLight.merge_begin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="route_66.agent.TrafficLight.merge_end">
+<code class="sig-name descname">merge_end</code><em class="property"> = 30</em><a class="headerlink" href="#route_66.agent.TrafficLight.merge_end" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="route_66.agent.TrafficLight.merging_cars">
+<code class="sig-name descname">merging_cars</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#route_66.agent.TrafficLight.merging_cars" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if there are agents on the on ramp and if there is room to merge to the main road
+Adds the agents to the main road and updates the on ramp queue</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="route_66.agent.TrafficLight.new_agents_to_queue">
+<code class="sig-name descname">new_agents_to_queue</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#route_66.agent.TrafficLight.new_agents_to_queue" title="Permalink to this definition">¶</a></dt>
+<dd><p>A function to generate an amount of agents per step to wait before the light</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="route_66.agent.TrafficLight.step">
+<code class="sig-name descname">step</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#route_66.agent.TrafficLight.step" title="Permalink to this definition">¶</a></dt>
+<dd><p>The update function for the traffic light</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="route_66.agent.TrafficLight.update_queues">
+<code class="sig-name descname">update_queues</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#route_66.agent.TrafficLight.update_queues" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the queues on both sides of the traffic light</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-route_66.batch_run">
+<span id="module-route-66-batch-run"></span><h2>Module: route_66.batch_run<a class="headerlink" href="#module-route_66.batch_run" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="route_66.batch_run.plot_batch">
+<code class="sig-prename descclassname">route_66.batch_run.</code><code class="sig-name descname">plot_batch</code><span class="sig-paren">(</span><em class="sig-param">N=[35], timer=[2]</em><span class="sig-paren">)</span><a class="headerlink" href="#route_66.batch_run.plot_batch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots each combination of N and timer.
+Each combination has its own coloured dot.
+Each combination is run for several iterations, thus several dots.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="route_66.batch_run.run_batch">
+<code class="sig-prename descclassname">route_66.batch_run.</code><code class="sig-name descname">run_batch</code><span class="sig-paren">(</span><em class="sig-param">N=[35], timer=[2], iterations=5</em><span class="sig-paren">)</span><a class="headerlink" href="#route_66.batch_run.run_batch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs the simulation for every combination of N and timer
+N is the number of Cars on the road
+Timer is the amount of seconds the traffic light will wait to let agents through</p>
+<p>Returns DataFrame with all the collected data of all the simulations</p>
+</dd></dl>
+
 </div>
 <div class="section" id="module-route_66.model">
 <span id="module-route-66-model"></span><h2>Module: route_66.model<a class="headerlink" href="#module-route_66.model" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="route_66.model.RoadModel">
-<em class="property">class </em><code class="sig-prename descclassname">route_66.model.</code><code class="sig-name descname">RoadModel</code><span class="sig-paren">(</span><em class="sig-param">N</em>, <em class="sig-param">length=60</em>, <em class="sig-param">lanes=1</em><span class="sig-paren">)</span><a class="headerlink" href="#route_66.model.RoadModel" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">route_66.model.</code><code class="sig-name descname">RoadModel</code><span class="sig-paren">(</span><em class="sig-param">N</em>, <em class="sig-param">length=100</em>, <em class="sig-param">lanes=1</em>, <em class="sig-param">timer=3</em><span class="sig-paren">)</span><a class="headerlink" href="#route_66.model.RoadModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">mesa.model.Model</span></code></p>
 <p>A model with a number of cars, Nagel-Schreckenberg</p>
+<dl class="method">
+<dt id="route_66.model.RoadModel.add_agent">
+<code class="sig-name descname">add_agent</code><span class="sig-paren">(</span><em class="sig-param">label</em>, <em class="sig-param">x_corr</em><span class="sig-paren">)</span><a class="headerlink" href="#route_66.model.RoadModel.add_agent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds an agent to the scheduler and model on a particular coordinate</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="route_66.model.RoadModel.step">
 <code class="sig-name descname">step</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#route_66.model.RoadModel.step" title="Permalink to this definition">¶</a></dt>
@@ -106,6 +181,11 @@ it may slow down by one unit of velocity randomly with a probability of CarAgent
 </dd></dl>
 
 </dd></dl>
+
+<dl class="function">
+<dt id="route_66.model.get_average_velocity">
+<code class="sig-prename descclassname">route_66.model.</code><code class="sig-name descname">get_average_velocity</code><span class="sig-paren">(</span><em class="sig-param">model</em><span class="sig-paren">)</span><a class="headerlink" href="#route_66.model.get_average_velocity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </div>
 <div class="section" id="module-route_66.server">
@@ -137,6 +217,7 @@ it may slow down by one unit of velocity randomly with a probability of CarAgent
   <ul>
 <li><a class="reference internal" href="#">Package: route_66</a><ul>
 <li><a class="reference internal" href="#module-route_66.agent">Module: route_66.agent</a></li>
+<li><a class="reference internal" href="#module-route_66.batch_run">Module: route_66.batch_run</a></li>
 <li><a class="reference internal" href="#module-route_66.model">Module: route_66.model</a></li>
 <li><a class="reference internal" href="#module-route_66.server">Module: route_66.server</a></li>
 <li><a class="reference internal" href="#module-route_66.visualisation">Module: route_66.visualisation</a></li>
