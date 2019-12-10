@@ -57,7 +57,7 @@ class TrafficLight(object):
     def __init__(self, unique_id, model, timer, ca):
         self.unique_id = unique_id
         self.model = model
-        self.current_car_id = 1
+        self.current_car_id = 0
 
         self.wait_queue = []
         self.on_ramp_queue = []
@@ -67,8 +67,7 @@ class TrafficLight(object):
         self.cars_amount = ca
 
     def step(self):
-        """"""
-
+        """The traffic light"""
         if self.counter == self.timer:
             # let cars through
             self.counter = 0
@@ -95,7 +94,7 @@ class TrafficLight(object):
         return empty_spaces
 
     def update_queues(self):
-        """"""
+        """Update the queues on both sides of the traffic light"""
         # add a certain amount of cars to the on ramp
         self.on_ramp_queue.extend([1 for x in range(self.cars_amount)])
         # update the wait queue by removing the cars that went onto the on ramp
@@ -103,4 +102,11 @@ class TrafficLight(object):
 
     def merging_cars(self):
         """"""
-        pass
+        empty_spaces = self.get_free_space()
+
+        while len(self.on_ramp_queue) > 0:
+
+            if len(empty_spaces) > 0:
+                pass
+            else:
+                break

@@ -40,3 +40,7 @@ class RoadModel(Model):
         self.datacollector.collect(self)
         # Run next step
         self.schedule.step()
+
+    def add_agent(self, agent, x_corr):
+        """"""
+        pass
