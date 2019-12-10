@@ -7,14 +7,23 @@ from mesa.datacollection import DataCollector
 import numpy as np
 
 
+def get_average_velocity(model):
+    df = model.datacollector.get_agent_vars_dataframe()
+    df.reset_index(inplace=True)
+    velocities = df["Velocity"]
+
+    return velocities.mean()
+
+
 class RoadModel(Model):
     """A model with a number of cars, Nagel-Schreckenberg"""
 
-    def __init__(self, N, length=100, lanes=1):
+    def __init__(self, N, length=100, lanes=1, timer=3):
         self.num_agents = N
         self.grid = SingleGrid(length, lanes, torus=True)
         model_stages = ["acceleration", "braking", "randomisation", "move"]
         self.schedule = StagedActivation(self, stage_list=model_stages)
+
 
         # Create agent
         for i in range(self.num_agents):
@@ -25,7 +34,7 @@ class RoadModel(Model):
             self.grid.position_agent(agent)
 
         # Add the traffic light
-        self.traffic_light = TrafficLight(0, self, 3, 2)
+        self.traffic_light = TrafficLight(0, self, timer, 2)
         self.average_velocity = CarAgent.init_velocity
         self.datacollector = DataCollector(agent_reporters={
             "Position": "pos",
