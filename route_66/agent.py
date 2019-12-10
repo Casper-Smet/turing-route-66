@@ -50,7 +50,9 @@ class CarAgent(Agent):
         self.model.grid.move_agent(self, new_pos)
 
 
+# TODO: add a function to add cars to the waiting queue
 class TrafficLight(object):
+    """A traffic light that holds a list with waiting cars and cars that want to merge to the main road"""
     merge_begin = 10
     merge_end = 30
 
@@ -67,7 +69,7 @@ class TrafficLight(object):
         self.cars_amount = ca
 
     def step(self):
-        """The traffic light"""
+        """The update function for the traffic light"""
         if self.counter == self.timer:
             # let cars through
             self.counter = 0
