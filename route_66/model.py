@@ -7,10 +7,17 @@ from mesa.datacollection import DataCollector
 import numpy as np
 
 
+def get_average_velocity(model):
+    df = model.datacollector.get_agent_vars_dataframe()
+    df.reset_index(inplace=True)
+    velocities = df["Velocity"]
+
+    return velocities.mean()
+
 class RoadModel(Model):
     """A model with a number of cars, Nagel-Schreckenberg"""
 
-    def __init__(self, N, length=100, lanes=1):
+    def __init__(self, N, length=100, lanes=1, timer=2):
         self.num_agents = N
         self.grid = SingleGrid(length, lanes, torus=True)
         model_stages = ["acceleration", "braking", "randomisation", "move"]
