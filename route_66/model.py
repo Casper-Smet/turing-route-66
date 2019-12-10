@@ -49,5 +49,5 @@ class RoadModel(Model):
         agent = CarAgent(label, self)
         # Add to schedule
         self.schedule.add(agent)
-        # Add to grid (randomly)
+        # Add to grid on a certain position
         self.grid.position_agent(agent, x_corr, 0)
