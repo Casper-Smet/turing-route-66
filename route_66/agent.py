@@ -50,16 +50,32 @@ class CarAgent(Agent):
         self.model.grid.move_agent(self, new_pos)
 
 
-class TrafficLight(Agent):
+class TrafficLight(object):
     merge_begin = 10
     merge_end = 30
 
-    def __init__(self, unique_id, model):
-        super().__init__(unique_id, model)
-        self.queue = []
+    def __init__(self, unique_id, model, timer, ca):
+        self.unique_id = unique_id
+        self.model = model
+        self.current_car_id = 1
+
+        self.wait_queue = []
+        self.on_ramp_queue = []
+
+        self.timer = timer
+        self.counter = 0
+        self.cars_amount = ca
 
     def step(self):
-        pass
+        """"""
+
+        if self.counter == self.timer:
+            # let cars through
+            self.counter = 0
+            # update the queues
+            self.update_queues()
+
+        self.counter += 1
 
     def get_free_space(self):
         """Checks if there exists some empty cells for an agent to merge into the main ramp
@@ -77,3 +93,14 @@ class TrafficLight(Agent):
                 x += 1
 
         return empty_spaces
+
+    def update_queues(self):
+        """"""
+        # add a certain amount of cars to the on ramp
+        self.on_ramp_queue.extend([1 for x in range(self.cars_amount)])
+        # update the wait queue by removing the cars that went onto the on ramp
+        self.wait_queue = self.wait_queue[self.cars_amount:]
+
+    def merging_cars(self):
+        """"""
+        pass
