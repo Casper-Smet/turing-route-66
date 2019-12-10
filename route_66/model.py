@@ -1,4 +1,4 @@
-from route_66.agent import CarAgent
+from route_66.agent import CarAgent, TrafficLight
 
 from mesa import Model
 from mesa.space import SingleGrid
@@ -24,6 +24,8 @@ class RoadModel(Model):
             # Add to grid (randomly)
             self.grid.position_agent(agent)
 
+        # Add the traffic light
+        self.traffic_light = TrafficLight(0, self, 3, 2)
         self.average_velocity = CarAgent.init_velocity
         self.datacollector = DataCollector(agent_reporters={
             "Position": "pos",
@@ -41,6 +43,11 @@ class RoadModel(Model):
         # Run next step
         self.schedule.step()
 
-    def add_agent(self, agent, x_corr):
-        """"""
-        pass
+    def add_agent(self, label, x_corr):
+        """Adds an agent to the scheduler and model on a particular coordinate"""
+        # Create agent
+        agent = CarAgent(label, self)
+        # Add to schedule
+        self.schedule.add(agent)
+        # Add to grid (randomly)
+        self.grid.position_agent(agent, x_corr, 0)
