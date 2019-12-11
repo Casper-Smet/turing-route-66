@@ -40,11 +40,14 @@ class RoadModel(Model):
             "Position": "pos",
             "Velocity": "velocity"},
             model_reporters={
-            "Average Velocity": "average_velocity"})
+            "Average Velocity": "average_velocity",
+            "Amount of cars": "agent_count"})
 
         self.running = True
 
     def step(self):
+        # Calculate amount of agents
+        self.agent_count = len(self.schedule.agents)
         # Calculate average velocity
         self.average_velocity = np.mean([a.velocity for a in self.schedule.agents])
         # Collect data
