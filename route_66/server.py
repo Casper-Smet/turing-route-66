@@ -32,8 +32,10 @@ model_params = {"N" : UserSettableParameter("slider", "Cars", 1, 1, 99,
 
 canvas_element = CanvasGrid(car_portrayal, 100, 1, 800, 10)
 
-chart_element = ChartModule([{"Label" : "Average Velocity", "Color" : colour_spectrum[4]}])
+chart_velocity = ChartModule([{"Label" : "Average Velocity", "Color" : colour_spectrum[4]}])
 
-server = ModularServer(RoadModel, [canvas_element, chart_element], 
+chart_N_cars = ChartModule([{"Label" : "Amount of cars", "Color" : colour_spectrum[0]}])
+
+server = ModularServer(RoadModel, [canvas_element, chart_velocity, chart_N_cars], 
                         "Nagel-Schreckenberg model", 
                         model_params=model_params)
