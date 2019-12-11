@@ -1,10 +1,10 @@
-from mesa.batchrunner import BatchRunner
-from route_66.model import RoadModel, get_average_velocity
-from route_66.agent import CarAgent
 import matplotlib.pyplot as plt
 import numpy as np
+import seaborn as sns
+from mesa.batchrunner import BatchRunner
 
-# https://github.com/Casper-Smet/intro-to-agents/blob/master/batch_run.py
+from route_66.agent import CarAgent
+from route_66.model import RoadModel, get_average_velocity
 
 
 def run_batch(N=[35], timer=[2], iterations=5):
@@ -39,27 +39,22 @@ def run_batch(N=[35], timer=[2], iterations=5):
     return run_data
 
 
-def plot_batch(N=[35], timer=[2]):
+def plot_batch(N=[35], timer=[2], iterations=5):
     """
     Plots each combination of N and timer.
     Each combination has its own coloured dot.
     Each combination is run for several iterations, thus several dots.
     """
-    run_data = run_batch(N=N, timer=timer)
-    df_N_groups = run_data.groupby("N")
-    N_groups = [df_N_groups.get_group(x) for x in df_N_groups.groups]
+    run_data = run_batch(N=N, timer=timer, iterations=iterations)
+    run_data["Run"] += 1  # Run starts now at 1, better for plot limits
 
-    for N_group, N_agents in zip(N_groups, N):  # Each individual N of agents
-        df_timer_groups = N_group.groupby("timer")
-        timer_groups = [df_timer_groups.get_group(x) for x in df_timer_groups.groups]
+    ax = sns.scatterplot("Run", "Average Velocity", data=run_data, size="N", hue="timer", palette="Set1")
 
-        for timer_group, seconds in zip(timer_groups, timer):  # Each individual amount of seconds within each individual N of agents
-            plt.scatter(np.arange(timer_group.shape[0]), timer_group["Average Velocity"], label=f"Agents: {N_agents}, Timer: {seconds}")
+    ax.set_title(f"{run_data.shape[0]} runs of the simulation using multiple combinations of 'N' and 'timer'")
+    ax.set_xlabel("Iteration")
+    ax.set_ylabel("Average Velocity")
+    ax.set_xlim(0, run_data.shape[0] + 0.5)
+    ax.set_ylim(0, CarAgent.max_velocity)
 
     plt.legend()
-    plt.xlabel("Iteration for given parameter")
-    plt.ylabel("Average Velocity")
-    plt.xlim(-0.5, timer_group.shape[0] - 0.5)
-    plt.ylim(0, CarAgent.max_velocity)
-
     plt.show()
