@@ -8,9 +8,10 @@ class CarAgent(Agent):
     max_velocity = 5
     p = 0.5
 
-    def __init__(self, unique_id, model):
+    def __init__(self, unique_id, model, tf):
         super().__init__(unique_id, model)
         self.velocity = CarAgent.init_velocity
+        self.is_from_traffic_light = tf
 
     def acceleration(self):
         """Increases velocity by one unit if it is smaller than CarAgent.max_velocity"""
@@ -48,6 +49,14 @@ class CarAgent(Agent):
         new_pos = self.model.grid.torus_adj(new_pos)
 
         self.model.grid.move_agent(self, new_pos)
+
+    def delete(self):
+        """Deletes the merged agents from the on ramp that have reached the end of the main road"""
+        if self.is_from_traffic_light:
+            # the agent is from the on ramp
+            x, y = self.pos
+            if 0 <= x <= 5:
+                self.model.delete_agent(self)
 
 
 # TODO: add a function to add cars to the waiting queue
