@@ -64,18 +64,18 @@ class TrafficLight(object):
     """A traffic light that holds a list with waiting cars and cars that want to merge to the main road"""
     merge_begin = 10
     merge_end = 30
+    cars_amount = 1
 
-    def __init__(self, unique_id, model, timer, ca):
+    def __init__(self, unique_id, model, timer):
         self.unique_id = unique_id
         self.model = model
         self.current_car_id = 0
 
-        self.wait_queue = []
-        self.on_ramp_queue = []
+        self.wait_queue = 1
+        self.on_ramp_queue = 0
 
         self.timer = timer
         self.counter = 0
-        self.cars_amount = ca
 
     def step(self):
         """The update function for the traffic light"""
@@ -88,7 +88,7 @@ class TrafficLight(object):
             self.merging_cars()
 
         # add a certain amount of agents to the waiting queue
-        self.wait_queue.extend([1 for x in range(self.new_agents_to_queue())])
+        self.wait_queue += self.new_agents_to_queue()
         # update the counter
         self.counter += 1
 
@@ -112,16 +112,16 @@ class TrafficLight(object):
     def update_queues(self):
         """Update the queues on both sides of the traffic light"""
         # add a certain amount of agents to the on ramp
-        self.on_ramp_queue.extend([1 for x in range(self.cars_amount)])
+        self.on_ramp_queue += TrafficLight.cars_amount
         # update the wait queue by removing the agents that went onto the on ramp
-        self.wait_queue = self.wait_queue[self.cars_amount:]
+        self.wait_queue -= TrafficLight.cars_amount
 
     def merging_cars(self):
         """Checks if there are agents on the on ramp and if there is room to merge to the main road
         Adds the agents to the main road and updates the on ramp queue"""
         empty_spaces = self.get_free_space()
 
-        while len(self.on_ramp_queue) > 0:
+        while self.on_ramp_queue > 0:
             # There exist some agents on the on ramp to merge
             if len(empty_spaces) > 0:
                 # there is room for merging
@@ -135,12 +135,12 @@ class TrafficLight(object):
                 # add the new agent to the model
                 self.model.add_agent(new_label, x_corr)
                 # update the on_ramp_queue
-                self.on_ramp_queue.pop()
+                self.on_ramp_queue -= 1
             else:
                 # no room for merging
                 break
 
     def new_agents_to_queue(self):
         """A function to generate an amount of agents per step to wait before the light"""
-        new_cars = 1
+        new_cars = 2
         return new_cars
