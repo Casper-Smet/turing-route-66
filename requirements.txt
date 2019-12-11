@@ -1,3 +1,4 @@
 mesa
 matplotlib
 numpy
+seaborn
