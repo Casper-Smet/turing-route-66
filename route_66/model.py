@@ -21,13 +21,13 @@ class RoadModel(Model):
     def __init__(self, N, length=100, lanes=1, timer=3):
         self.num_agents = N
         self.grid = SingleGrid(length, lanes, torus=True)
-        model_stages = ["acceleration", "braking", "randomisation", "move"]
+        model_stages = ["acceleration", "braking", "randomisation", "move", "delete"]
         self.schedule = StagedActivation(self, stage_list=model_stages)
 
 
         # Create agent
         for i in range(self.num_agents):
-            agent = CarAgent(i, self)
+            agent = CarAgent(i, self, False)
             # Add to schedule
             self.schedule.add(agent)
             # Add to grid (randomly)
@@ -60,8 +60,15 @@ class RoadModel(Model):
     def add_agent(self, label, x_corr):
         """Adds an agent to the scheduler and model on a particular coordinate"""
         # Create agent
-        agent = CarAgent(label, self)
+        agent = CarAgent(label, self, True)
         # Add to schedule
         self.schedule.add(agent)
         # Add to grid on a certain position
         self.grid.position_agent(agent, x_corr, 0)
+
+    def delete_agent(self, agent):
+        """Deletes an agent from the scheduler and model"""
+        # remove from schedule
+        self.schedule.remove(agent)
+        # remove from grid
+        self.grid.remove_agent(agent)
