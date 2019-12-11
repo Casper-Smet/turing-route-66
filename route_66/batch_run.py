@@ -48,12 +48,13 @@ def plot_batch(N=[35], timer=[2], iterations=5):
     run_data = run_batch(N=N, timer=timer, iterations=iterations)
     run_data["Run"] += 1  # Run starts now at 1, better for plot limits
 
-    ax = sns.scatterplot("Run", "Average Velocity", data=run_data, size="N", hue="timer", palette="Set1")
+    # ax = sns.scatterplot("Run", "Average Velocity", data=run_data, size="N", hue="timer", palette="Set1")
+    ax = sns.boxplot(x="timer", y="Average Velocity", hue="N", data=run_data)
 
     ax.set_title(f"{run_data.shape[0]} runs of the simulation using multiple combinations of 'N' and 'timer'")
-    ax.set_xlabel("Iteration")
+    ax.set_xlabel(f"Different timers: {timer}")
     ax.set_ylabel("Average Velocity")
-    ax.set_xlim(0, run_data.shape[0] + 0.5)
+    ax.set_xlim(-0.5, len(timer) - 0.5)
     ax.set_ylim(0, CarAgent.max_velocity)
 
     plt.legend()
