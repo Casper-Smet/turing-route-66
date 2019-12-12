@@ -34,7 +34,7 @@ class RoadModel(Model):
             self.grid.position_agent(agent)
 
         # Add the traffic light
-        self.traffic_light = TrafficLight(0, self, timer)
+        self.traffic_light = TrafficLight(0, self, timer, 20, 20)
         self.average_velocity = CarAgent.init_velocity
         self.datacollector = DataCollector(agent_reporters={
             "Position": "pos",

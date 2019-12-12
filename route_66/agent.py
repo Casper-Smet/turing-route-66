@@ -59,14 +59,11 @@ class CarAgent(Agent):
                 self.model.delete_agent(self)
 
 
-# TODO: add a function to add cars to the waiting queue
 class TrafficLight(object):
     """A traffic light that holds a list with waiting cars and cars that want to merge to the main road"""
-    merge_begin = 10
-    merge_end = 30
     cars_amount = 1
 
-    def __init__(self, unique_id, model, timer):
+    def __init__(self, unique_id, model, timer, ramp_begin, ramp_len):
         self.unique_id = unique_id
         self.model = model
         self.current_car_id = 0
@@ -76,6 +73,9 @@ class TrafficLight(object):
 
         self.timer = timer
         self.counter = 0
+
+        self.on_ramp_begin = ramp_begin
+        self.on_ramp_end = ramp_begin + ramp_len
 
     def step(self):
         """The update function for the traffic light"""
@@ -96,9 +96,9 @@ class TrafficLight(object):
         """Checks if there exists some empty cells for an agent to merge into the main ramp
         Returns all the cells that are free for the agents on the on ramp to merge into"""
         empty_spaces = []
-        x = TrafficLight.merge_begin
+        x = self.on_ramp_begin
 
-        while TrafficLight.merge_begin <= x <= TrafficLight.merge_end:
+        while self.on_ramp_begin <= x <= self.on_ramp_end:
             # while the cell runs parallel to the main road
             if self.model.grid.is_cell_empty((x, 0)) and self.model.grid.is_cell_empty((x + 1, 0)):
                 # if the current cell and the next cell are empty append the next cell
