@@ -16,8 +16,12 @@ def car_portrayal(agent):
     portrayal = {}
     # update portrayal characteristics for each CarAgent object
     if isinstance(agent, CarAgent):
-        portrayal["Shape"] = "circle"
-        portrayal["r"] = .9
+        if agent.is_from_traffic_light:
+            portrayal["Shape"] = "rect"
+            portrayal["w"], portrayal["h"] = .7, .7
+        else:
+            portrayal["Shape"] = "circle"
+            portrayal["r"] = .9
         portrayal["Layer"] = 0
         portrayal["Filled"] = "true"
 
