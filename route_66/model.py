@@ -15,6 +15,14 @@ def get_average_velocity(model):
     return velocities.mean()
 
 
+def get_standard_deviation_velocity(model):
+    df = model.datacollector.get_agent_vars_dataframe()
+    df.reset_index(inplace=True)
+    velocities = df["Velocity"]
+
+    return velocities.std()
+
+
 class RoadModel(Model):
     """A model with a number of cars, Nagel-Schreckenberg"""
 
@@ -23,7 +31,6 @@ class RoadModel(Model):
         self.grid = SingleGrid(length, lanes, torus=True)
         model_stages = ["acceleration", "braking", "randomisation", "move", "delete"]
         self.schedule = StagedActivation(self, stage_list=model_stages)
-
 
         # Create agent
         for i in range(self.num_agents):
