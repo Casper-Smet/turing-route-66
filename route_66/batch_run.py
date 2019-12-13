@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-import numpy as np
 import seaborn as sns
 from mesa.batchrunner import BatchRunner
 
@@ -13,7 +12,11 @@ def run_batch(N=[35], timer=[2], iterations=5):
     N is the number of Cars on the road
     Timer is the amount of seconds the traffic light will wait to let agents through
 
-    Returns DataFrame with all the collected data of all the simulations
+    :param N: List of each number of initial cars on the road
+    :param timer: List of each timing that needs to be simulated
+    :param iterations: Integer of the amount of times every single combination needs to be repeated
+
+    :return: DataFrame with the Average Velocity and Standard Deviation of the velocity for every combination
     """
     # Parameters that won't be changed during any of the iterations
     fixed_params = {
@@ -45,6 +48,12 @@ def plot_batch(N=[35], timer=[2], iterations=5):
     Plots each combination of N and timer.
     Each combination has its own coloured dot.
     Each combination is run for several iterations, thus several dots.
+
+    :param N: List of each number of initial cars on the road
+    :param timer: List of each timing that needs to be simulated
+    :param iterations: Integer of the amount of times every single combination needs to be repeated
+
+    :return: the DataFrame associated with the batch plot
     """
     run_data = run_batch(N=N, timer=timer, iterations=iterations)
     run_data["Run"] += 1  # Run starts now at 1, better for plot limits
