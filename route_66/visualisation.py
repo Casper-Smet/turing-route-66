@@ -1,11 +1,11 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-from route_66.model import RoadModel
 from route_66.agent import CarAgent
+from route_66.model import RoadModel
 
 
-def plot(steps, N, length=100, lanes=1, p=0.5, grid=False):
+def plot_simulation(steps, N, length=100, lanes=1, p=0.5, grid=False):
     """Visualises the development of traffic throughput"""
     assert N < length, "It is not possible to have more cars than cells"
     model = RoadModel(N, length=length, lanes=lanes)
@@ -19,8 +19,8 @@ def plot(steps, N, length=100, lanes=1, p=0.5, grid=False):
     velocities["Position"] = velocities['Position'].apply(lambda x: x[0] + 0.5)
     velocities["Step"] = velocities["Step"].apply(lambda x: x + 0.5)
 
-    fig, ax = plt.subplots(figsize=(6, 6))
-    ax.scatter(velocities["Position"], velocities["Step"], marker="s", color="black", s=20, zorder=1)
+    _, ax = plt.subplots(figsize=(8, 8))
+    ax.scatter(velocities["Position"], velocities["Step"], marker="s", color="black", s=10, zorder=1)
 
     if grid:
         spacing = np.arange(0, steps)
