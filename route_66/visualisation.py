@@ -6,7 +6,17 @@ from route_66.model import RoadModel
 
 
 def plot_simulation(steps, N, length=100, lanes=1, p=0.5, grid=False):
-    """Visualises the development of traffic throughput"""
+    """Visualises the development of traffic throughput
+
+    :param steps: Integer of the amount of steps the simulation needs to run
+    :param N: List of each number of initial cars on the road
+    :param length: Integer of the length of the road
+    :param lanes: The amount of lanes the road has
+    :param p: The probability a car will decrease speed by one
+    :param grid: Boolean to show the grid on the plot or not
+
+    :return:  No return but shows the plot instead
+    """
     assert N < length, "It is not possible to have more cars than cells"
     model = RoadModel(N, length=length, lanes=lanes)
     CarAgent.p = p

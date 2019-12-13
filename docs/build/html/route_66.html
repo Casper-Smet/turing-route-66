@@ -279,7 +279,13 @@ Timer is the amount of seconds the traffic light will wait to let agents through
 <dl class="function">
 <dt id="route_66.server.car_portrayal">
 <code class="sig-prename descclassname">route_66.server.</code><code class="sig-name descname">car_portrayal</code><span class="sig-paren">(</span><em class="sig-param">agent</em><span class="sig-paren">)</span><a class="headerlink" href="#route_66.server.car_portrayal" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Visualises the cars for the Mesa webserver</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Dictionary containing the settings of an agent</p>
+</dd>
+</dl>
+</dd></dl>
 
 </div>
 <div class="section" id="module-route_66.visualisation">
@@ -288,6 +294,21 @@ Timer is the amount of seconds the traffic light will wait to let agents through
 <dt id="route_66.visualisation.plot_simulation">
 <code class="sig-prename descclassname">route_66.visualisation.</code><code class="sig-name descname">plot_simulation</code><span class="sig-paren">(</span><em class="sig-param">steps</em>, <em class="sig-param">N</em>, <em class="sig-param">length=100</em>, <em class="sig-param">lanes=1</em>, <em class="sig-param">p=0.5</em>, <em class="sig-param">grid=False</em><span class="sig-paren">)</span><a class="headerlink" href="#route_66.visualisation.plot_simulation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Visualises the development of traffic throughput</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>steps</strong> – Integer of the amount of steps the simulation needs to run</p></li>
+<li><p><strong>N</strong> – List of each number of initial cars on the road</p></li>
+<li><p><strong>length</strong> – Integer of the length of the road</p></li>
+<li><p><strong>lanes</strong> – The amount of lanes the road has</p></li>
+<li><p><strong>p</strong> – The probability a car will decrease speed by one</p></li>
+<li><p><strong>grid</strong> – Boolean to show the grid on the plot or not</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>No return but shows the plot instead</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>

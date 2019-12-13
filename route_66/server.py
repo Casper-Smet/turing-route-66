@@ -10,6 +10,9 @@ colour_spectrum = ["#ff3333", "#ffb133", "#92ff33", "#33ffc9", "#3366ff"]
 
 
 def car_portrayal(agent):
+    """Visualises the cars for the Mesa webserver
+
+    :return: Dictionary containing the settings of an agent"""
     if agent is None:
         return
 
