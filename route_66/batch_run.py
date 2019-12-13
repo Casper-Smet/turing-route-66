@@ -49,8 +49,9 @@ def plot_batch(N=[35], timer=[2], iterations=5):
     run_data = run_batch(N=N, timer=timer, iterations=iterations)
     run_data["Run"] += 1  # Run starts now at 1, better for plot limits
 
+    _, ax = plt.subplots(figsize=(12, 8))
     # ax = sns.scatterplot("Run", "Average Velocity", data=run_data, size="N", hue="timer", palette="Set1")
-    ax = sns.boxplot(x="timer", y="Average Velocity", hue="N", data=run_data)
+    sns.boxplot(x="timer", y="Average Velocity", hue="N", data=run_data, ax=ax)
 
     ax.set_title(f"{run_data.shape[0]} runs of the simulation using multiple combinations of 'N' and 'timer'")
     ax.set_xlabel(f"Different timers: {timer}")
@@ -61,4 +62,5 @@ def plot_batch(N=[35], timer=[2], iterations=5):
     plt.legend()
     plt.show()
 
+    # Returns the same data as used in the plot, run_batch() could be used if the data does not need to be the same as plot
     return run_data
