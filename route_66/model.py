@@ -8,6 +8,11 @@ import numpy as np
 
 
 def get_average_velocity(model):
+    """
+    Gets the total average velocity over all the agents
+    :param model: The model (environment) where the agents exist
+    :return: The total average velocity over all the agents
+    """
     df = model.datacollector.get_agent_vars_dataframe()
     df.reset_index(inplace=True)
     velocities = df["Velocity"]
@@ -16,6 +21,11 @@ def get_average_velocity(model):
 
 
 def get_standard_deviation_velocity(model):
+    """
+    Gets the total standard deviation of the velocity over all agents
+    :param model: The model (environment) where the agents exist
+    :return: The total standard deviation over all agents
+    """
     df = model.datacollector.get_agent_vars_dataframe()
     df.reset_index(inplace=True)
     velocities = df["Velocity"]
@@ -24,7 +34,9 @@ def get_standard_deviation_velocity(model):
 
 
 class RoadModel(Model):
-    """A model with a number of cars, Nagel-Schreckenberg"""
+    """
+    A model with a number of cars, Nagel-Schreckenberg
+    """
 
     def __init__(self, N, length=100, lanes=1, timer=3):
         self.num_agents = N
@@ -53,6 +65,9 @@ class RoadModel(Model):
         self.running = True
 
     def step(self):
+        """
+        The model takes a new step and updates
+        """
         # Calculate amount of agents
         self.agent_count = len(self.schedule.agents)
         # Calculate average velocity
@@ -65,7 +80,11 @@ class RoadModel(Model):
         self.schedule.step()
 
     def add_agent(self, label, x_corr):
-        """Adds an agent to the scheduler and model on a particular coordinate"""
+        """
+        Adds an agent to the scheduler and model on a particular coordinate
+        :param label: The label of the agents that gets created
+        :param x_corr: The x-coordinate of where the agent will be spawned
+        """
         # Create agent
         agent = CarAgent(label, self, True)
         # Add to schedule
@@ -74,7 +93,10 @@ class RoadModel(Model):
         self.grid.position_agent(agent, x_corr, 0)
 
     def delete_agent(self, agent):
-        """Deletes an agent from the scheduler and model"""
+        """
+        Deletes an agent from the scheduler and model
+        :param agent: The agents that gets deleted
+        """
         # remove from schedule
         self.schedule.remove(agent)
         # remove from grid
