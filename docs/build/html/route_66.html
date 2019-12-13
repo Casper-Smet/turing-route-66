@@ -45,7 +45,7 @@
 <span id="module-route-66-agent"></span><h2>Module: route_66.agent<a class="headerlink" href="#module-route_66.agent" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="route_66.agent.CarAgent">
-<em class="property">class </em><code class="sig-prename descclassname">route_66.agent.</code><code class="sig-name descname">CarAgent</code><span class="sig-paren">(</span><em class="sig-param">unique_id</em>, <em class="sig-param">model</em><span class="sig-paren">)</span><a class="headerlink" href="#route_66.agent.CarAgent" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">route_66.agent.</code><code class="sig-name descname">CarAgent</code><span class="sig-paren">(</span><em class="sig-param">unique_id</em>, <em class="sig-param">model</em>, <em class="sig-param">tf</em><span class="sig-paren">)</span><a class="headerlink" href="#route_66.agent.CarAgent" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">mesa.agent.Agent</span></code></p>
 <p>An agent with a velocity of 1-5 and a position. Random initial velocity</p>
 <dl class="method">
@@ -59,6 +59,12 @@
 <code class="sig-name descname">braking</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#route_66.agent.CarAgent.braking" title="Permalink to this definition">¶</a></dt>
 <dd><p>If the distance between an agent and the agent in front of it is smaller than the velocity
 the velocity is reduced to the number of emtpy cells in front of the car</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="route_66.agent.CarAgent.delete">
+<code class="sig-name descname">delete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#route_66.agent.CarAgent.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes the merged agents from the on ramp that have reached the end of the main road</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -93,25 +99,20 @@ it may slow down by one unit of velocity randomly with a probability of CarAgent
 
 <dl class="class">
 <dt id="route_66.agent.TrafficLight">
-<em class="property">class </em><code class="sig-prename descclassname">route_66.agent.</code><code class="sig-name descname">TrafficLight</code><span class="sig-paren">(</span><em class="sig-param">unique_id</em>, <em class="sig-param">model</em>, <em class="sig-param">timer</em>, <em class="sig-param">ca</em><span class="sig-paren">)</span><a class="headerlink" href="#route_66.agent.TrafficLight" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">route_66.agent.</code><code class="sig-name descname">TrafficLight</code><span class="sig-paren">(</span><em class="sig-param">unique_id</em>, <em class="sig-param">model</em>, <em class="sig-param">timer</em>, <em class="sig-param">ramp_begin</em>, <em class="sig-param">ramp_len</em><span class="sig-paren">)</span><a class="headerlink" href="#route_66.agent.TrafficLight" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>A traffic light that holds a list with waiting cars and cars that want to merge to the main road</p>
+<dl class="attribute">
+<dt id="route_66.agent.TrafficLight.cars_amount">
+<code class="sig-name descname">cars_amount</code><em class="property"> = 1</em><a class="headerlink" href="#route_66.agent.TrafficLight.cars_amount" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="route_66.agent.TrafficLight.get_free_space">
 <code class="sig-name descname">get_free_space</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#route_66.agent.TrafficLight.get_free_space" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks if there exists some empty cells for an agent to merge into the main ramp
 Returns all the cells that are free for the agents on the on ramp to merge into</p>
 </dd></dl>
-
-<dl class="attribute">
-<dt id="route_66.agent.TrafficLight.merge_begin">
-<code class="sig-name descname">merge_begin</code><em class="property"> = 10</em><a class="headerlink" href="#route_66.agent.TrafficLight.merge_begin" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="route_66.agent.TrafficLight.merge_end">
-<code class="sig-name descname">merge_end</code><em class="property"> = 30</em><a class="headerlink" href="#route_66.agent.TrafficLight.merge_end" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 <dl class="method">
 <dt id="route_66.agent.TrafficLight.merging_cars">
@@ -145,7 +146,7 @@ Adds the agents to the main road and updates the on ramp queue</p>
 <span id="module-route-66-batch-run"></span><h2>Module: route_66.batch_run<a class="headerlink" href="#module-route_66.batch_run" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="route_66.batch_run.plot_batch">
-<code class="sig-prename descclassname">route_66.batch_run.</code><code class="sig-name descname">plot_batch</code><span class="sig-paren">(</span><em class="sig-param">N=[35], timer=[2]</em><span class="sig-paren">)</span><a class="headerlink" href="#route_66.batch_run.plot_batch" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">route_66.batch_run.</code><code class="sig-name descname">plot_batch</code><span class="sig-paren">(</span><em class="sig-param">N=[35], timer=[2], iterations=5</em><span class="sig-paren">)</span><a class="headerlink" href="#route_66.batch_run.plot_batch" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plots each combination of N and timer.
 Each combination has its own coloured dot.
 Each combination is run for several iterations, thus several dots.</p>
@@ -175,6 +176,12 @@ Timer is the amount of seconds the traffic light will wait to let agents through
 </dd></dl>
 
 <dl class="method">
+<dt id="route_66.model.RoadModel.delete_agent">
+<code class="sig-name descname">delete_agent</code><span class="sig-paren">(</span><em class="sig-param">agent</em><span class="sig-paren">)</span><a class="headerlink" href="#route_66.model.RoadModel.delete_agent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes an agent from the scheduler and model</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="route_66.model.RoadModel.step">
 <code class="sig-name descname">step</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#route_66.model.RoadModel.step" title="Permalink to this definition">¶</a></dt>
 <dd><p>A single step. Fill in here.</p>
@@ -185,6 +192,11 @@ Timer is the amount of seconds the traffic light will wait to let agents through
 <dl class="function">
 <dt id="route_66.model.get_average_velocity">
 <code class="sig-prename descclassname">route_66.model.</code><code class="sig-name descname">get_average_velocity</code><span class="sig-paren">(</span><em class="sig-param">model</em><span class="sig-paren">)</span><a class="headerlink" href="#route_66.model.get_average_velocity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="route_66.model.get_standard_deviation_velocity">
+<code class="sig-prename descclassname">route_66.model.</code><code class="sig-name descname">get_standard_deviation_velocity</code><span class="sig-paren">(</span><em class="sig-param">model</em><span class="sig-paren">)</span><a class="headerlink" href="#route_66.model.get_standard_deviation_velocity" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
