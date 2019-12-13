@@ -10,7 +10,9 @@ import numpy as np
 def get_average_velocity(model):
     """
     Gets the total average velocity over all the agents
+
     :param model: The model (environment) where the agents exist
+
     :return: The total average velocity over all the agents
     """
     df = model.datacollector.get_agent_vars_dataframe()
@@ -23,7 +25,9 @@ def get_average_velocity(model):
 def get_standard_deviation_velocity(model):
     """
     Gets the total standard deviation of the velocity over all agents
+
     :param model: The model (environment) where the agents exist
+
     :return: The total standard deviation over all agents
     """
     df = model.datacollector.get_agent_vars_dataframe()
@@ -82,6 +86,7 @@ class RoadModel(Model):
     def add_agent(self, label, x_corr):
         """
         Adds an agent to the scheduler and model on a particular coordinate
+
         :param label: The label of the agents that gets created
         :param x_corr: The x-coordinate of where the agent will be spawned
         """
@@ -95,6 +100,7 @@ class RoadModel(Model):
     def delete_agent(self, agent):
         """
         Deletes an agent from the scheduler and model
+
         :param agent: The agents that gets deleted
         """
         # remove from schedule

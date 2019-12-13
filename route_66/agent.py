@@ -18,6 +18,7 @@ class CarAgent(Agent):
     def acceleration(self):
         """
         Increases velocity by one unit if it is smaller than CarAgent.max_velocity
+
         :return: The current velocity of the agent
         """
         if self.velocity < CarAgent.max_velocity:
@@ -29,6 +30,7 @@ class CarAgent(Agent):
         """
         If the distance between an agent and the agent in front of it is smaller than the velocity
         the velocity is reduced to the number of emtpy cells in front of the car
+
         :return: The current velocity of the agent
         """
         x, y = self.pos
@@ -45,6 +47,7 @@ class CarAgent(Agent):
         """
         If an agent's velocity is greater than 1,
         it may slow down by one unit of velocity randomly with a probability of CarAgent.p
+
         :return: The current velocity of the agent
         """
         if self.velocity > 1:
@@ -168,6 +171,7 @@ class TrafficLight(object):
     def new_agents_to_queue():
         """
         A function to generate an amount of agents per step to wait before the light
+
         :return: The amount of new cars that are added to the queue
         """
         new_cars = 2
