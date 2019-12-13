@@ -8,3 +8,5 @@ To run the simulation in the interactive webserver, the file `run.py` needs to b
 The plots belonging to the batch run can be seen in the Jupyter Notebook `Plotting.ipynb`.
 
 To update the documentation, the command `make html` needs to be run. The documentation can also be viewed on [Read The Docs](https://turing-route-66.readthedocs.io/en/latest/ "readthedocs.io").
+
+Python 3.8.X is currently not supported. It is recommended to run the simulation in Python 3.6.x or 3.7.x.
