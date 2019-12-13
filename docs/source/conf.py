@@ -23,7 +23,7 @@ copyright = '2019, Stan Meyberg, Thijs van den Berg, Casper Smet'
 author = 'Stan Meyberg, Thijs van den Berg, Casper Smet'
 
 # The full version, including alpha/beta/rc tags
-release = '2019.12.06.1'
+release = '2019.12.13.1'
 
 
 # -- General configuration ---------------------------------------------------
