@@ -60,3 +60,5 @@ def plot_batch(N=[35], timer=[2], iterations=5):
 
     plt.legend()
     plt.show()
+
+    return run_data
