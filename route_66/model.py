@@ -74,10 +74,10 @@ class RoadModel(Model):
         self.average_velocity = np.mean([a.velocity for a in self.schedule.agents])
         # Collect data
         self.datacollector.collect(self)
-        # Run next step
-        self.schedule.step()
         # Run a step of the traffic light
         self.traffic_light.step()
+        # Run next step
+        self.schedule.step()
 
     def add_agent(self, label, x_corr):
         """
