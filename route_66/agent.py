@@ -86,11 +86,12 @@ class TrafficLight(object):
             self.update_queues()
             # merge the cars
             self.merging_cars()
+        else:
+            # update the counter
+            self.counter += 1
 
         # add a certain amount of agents to the waiting queue
         self.wait_queue += self.new_agents_to_queue()
-        # update the counter
-        self.counter += 1
 
     def get_free_space(self):
         """Checks if there exists some empty cells for an agent to merge into the main ramp
