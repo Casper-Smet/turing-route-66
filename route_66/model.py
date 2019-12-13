@@ -1,10 +1,10 @@
-from route_66.agent import CarAgent, TrafficLight
-
+import numpy as np
 from mesa import Model
+from mesa.datacollection import DataCollector
 from mesa.space import SingleGrid
 from mesa.time import StagedActivation
-from mesa.datacollection import DataCollector
-import numpy as np
+
+from route_66.agent import CarAgent, TrafficLight
 
 
 def get_average_velocity(model):
@@ -63,8 +63,8 @@ class RoadModel(Model):
             "Position": "pos",
             "Velocity": "velocity"},
             model_reporters={
-            "Average Velocity": "average_velocity",
-            "Amount of cars": "agent_count"})
+                "Average Velocity": "average_velocity",
+                "Amount of cars": "agent_count"})
 
         self.running = True
 

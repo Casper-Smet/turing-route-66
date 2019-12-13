@@ -1,5 +1,4 @@
 from mesa import Agent
-import mesa.space
 
 
 class CarAgent(Agent):

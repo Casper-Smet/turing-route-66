@@ -52,6 +52,11 @@
 <dt id="route_66.agent.CarAgent.acceleration">
 <code class="sig-name descname">acceleration</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#route_66.agent.CarAgent.acceleration" title="Permalink to this definition">¶</a></dt>
 <dd><p>Increases velocity by one unit if it is smaller than CarAgent.max_velocity</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The current velocity of the agent</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
@@ -59,6 +64,11 @@
 <code class="sig-name descname">braking</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#route_66.agent.CarAgent.braking" title="Permalink to this definition">¶</a></dt>
 <dd><p>If the distance between an agent and the agent in front of it is smaller than the velocity
 the velocity is reduced to the number of emtpy cells in front of the car</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The current velocity of the agent</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
@@ -91,8 +101,13 @@ the velocity is reduced to the number of emtpy cells in front of the car</p>
 <dl class="method">
 <dt id="route_66.agent.CarAgent.randomisation">
 <code class="sig-name descname">randomisation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#route_66.agent.CarAgent.randomisation" title="Permalink to this definition">¶</a></dt>
-<dd><p>If an agent’s velocity is greater than 1, 
+<dd><p>If an agent’s velocity is greater than 1,
 it may slow down by one unit of velocity randomly with a probability of CarAgent.p</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The current velocity of the agent</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -123,8 +138,13 @@ Adds the agents to the main road and updates the on ramp queue</p>
 
 <dl class="method">
 <dt id="route_66.agent.TrafficLight.new_agents_to_queue">
-<code class="sig-name descname">new_agents_to_queue</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#route_66.agent.TrafficLight.new_agents_to_queue" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">new_agents_to_queue</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#route_66.agent.TrafficLight.new_agents_to_queue" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function to generate an amount of agents per step to wait before the light</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The amount of new cars that are added to the queue</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
@@ -150,6 +170,18 @@ Adds the agents to the main road and updates the on ramp queue</p>
 <dd><p>Plots each combination of N and timer.
 Each combination has its own coloured dot.
 Each combination is run for several iterations, thus several dots.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>N</strong> – List of each number of initial cars on the road</p></li>
+<li><p><strong>timer</strong> – List of each timing that needs to be simulated</p></li>
+<li><p><strong>iterations</strong> – Integer of the amount of times every single combination needs to be repeated</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the DataFrame associated with the batch plot</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
@@ -158,7 +190,18 @@ Each combination is run for several iterations, thus several dots.</p>
 <dd><p>Runs the simulation for every combination of N and timer
 N is the number of Cars on the road
 Timer is the amount of seconds the traffic light will wait to let agents through</p>
-<p>Returns DataFrame with all the collected data of all the simulations</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>N</strong> – List of each number of initial cars on the road</p></li>
+<li><p><strong>timer</strong> – List of each timing that needs to be simulated</p></li>
+<li><p><strong>iterations</strong> – Integer of the amount of times every single combination needs to be repeated</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>DataFrame with the Average Velocity and Standard Deviation of the velocity for every combination</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -173,18 +216,31 @@ Timer is the amount of seconds the traffic light will wait to let agents through
 <dt id="route_66.model.RoadModel.add_agent">
 <code class="sig-name descname">add_agent</code><span class="sig-paren">(</span><em class="sig-param">label</em>, <em class="sig-param">x_corr</em><span class="sig-paren">)</span><a class="headerlink" href="#route_66.model.RoadModel.add_agent" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds an agent to the scheduler and model on a particular coordinate</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>label</strong> – The label of the agents that gets created</p></li>
+<li><p><strong>x_corr</strong> – The x-coordinate of where the agent will be spawned</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="route_66.model.RoadModel.delete_agent">
 <code class="sig-name descname">delete_agent</code><span class="sig-paren">(</span><em class="sig-param">agent</em><span class="sig-paren">)</span><a class="headerlink" href="#route_66.model.RoadModel.delete_agent" title="Permalink to this definition">¶</a></dt>
 <dd><p>Deletes an agent from the scheduler and model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>agent</strong> – The agents that gets deleted</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="route_66.model.RoadModel.step">
 <code class="sig-name descname">step</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#route_66.model.RoadModel.step" title="Permalink to this definition">¶</a></dt>
-<dd><p>A single step. Fill in here.</p>
+<dd><p>The model takes a new step and updates</p>
 </dd></dl>
 
 </dd></dl>
@@ -192,12 +248,30 @@ Timer is the amount of seconds the traffic light will wait to let agents through
 <dl class="function">
 <dt id="route_66.model.get_average_velocity">
 <code class="sig-prename descclassname">route_66.model.</code><code class="sig-name descname">get_average_velocity</code><span class="sig-paren">(</span><em class="sig-param">model</em><span class="sig-paren">)</span><a class="headerlink" href="#route_66.model.get_average_velocity" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Gets the total average velocity over all the agents</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>model</strong> – The model (environment) where the agents exist</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The total average velocity over all the agents</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="function">
 <dt id="route_66.model.get_standard_deviation_velocity">
 <code class="sig-prename descclassname">route_66.model.</code><code class="sig-name descname">get_standard_deviation_velocity</code><span class="sig-paren">(</span><em class="sig-param">model</em><span class="sig-paren">)</span><a class="headerlink" href="#route_66.model.get_standard_deviation_velocity" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Gets the total standard deviation of the velocity over all agents</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>model</strong> – The model (environment) where the agents exist</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The total standard deviation over all agents</p>
+</dd>
+</dl>
+</dd></dl>
 
 </div>
 <div class="section" id="module-route_66.server">
@@ -211,8 +285,8 @@ Timer is the amount of seconds the traffic light will wait to let agents through
 <div class="section" id="module-route_66.visualisation">
 <span id="module-route-66-visualisation"></span><h2>Module: route_66.visualisation<a class="headerlink" href="#module-route_66.visualisation" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
-<dt id="route_66.visualisation.plot">
-<code class="sig-prename descclassname">route_66.visualisation.</code><code class="sig-name descname">plot</code><span class="sig-paren">(</span><em class="sig-param">steps</em>, <em class="sig-param">N</em>, <em class="sig-param">length=100</em>, <em class="sig-param">lanes=1</em>, <em class="sig-param">p=0.5</em>, <em class="sig-param">grid=False</em><span class="sig-paren">)</span><a class="headerlink" href="#route_66.visualisation.plot" title="Permalink to this definition">¶</a></dt>
+<dt id="route_66.visualisation.plot_simulation">
+<code class="sig-prename descclassname">route_66.visualisation.</code><code class="sig-name descname">plot_simulation</code><span class="sig-paren">(</span><em class="sig-param">steps</em>, <em class="sig-param">N</em>, <em class="sig-param">length=100</em>, <em class="sig-param">lanes=1</em>, <em class="sig-param">p=0.5</em>, <em class="sig-param">grid=False</em><span class="sig-paren">)</span><a class="headerlink" href="#route_66.visualisation.plot_simulation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Visualises the development of traffic throughput</p>
 </dd></dl>
 

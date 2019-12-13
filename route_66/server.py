@@ -1,9 +1,9 @@
 from mesa.visualization.ModularVisualization import ModularServer
-from mesa.visualization.modules import CanvasGrid, ChartModule
 from mesa.visualization.UserParam import UserSettableParameter
+from mesa.visualization.modules import CanvasGrid, ChartModule
 
-from route_66.model import RoadModel
 from route_66.agent import CarAgent
+from route_66.model import RoadModel
 
 # color spectrum from red to blue
 colour_spectrum = ["#ff3333", "#ffb133", "#92ff33", "#33ffc9", "#3366ff"]
@@ -12,7 +12,7 @@ colour_spectrum = ["#ff3333", "#ffb133", "#92ff33", "#33ffc9", "#3366ff"]
 def car_portrayal(agent):
     if agent is None:
         return
-    
+
     portrayal = {}
     # update portrayal characteristics for each CarAgent object
     if isinstance(agent, CarAgent):
@@ -31,15 +31,12 @@ def car_portrayal(agent):
     return portrayal
 
 
-model_params = {"N" : UserSettableParameter("slider", "Cars", 1, 1, 99,
-                                            description="Number of cars")}
+model_params = {"N": UserSettableParameter("slider", "Cars", 1, 1, 99, description="Number of cars")}
 
 canvas_element = CanvasGrid(car_portrayal, 100, 1, 800, 10)
 
-chart_velocity = ChartModule([{"Label" : "Average Velocity", "Color" : colour_spectrum[4]}])
+chart_velocity = ChartModule([{"Label": "Average Velocity", "Color": colour_spectrum[4]}])
 
-chart_N_cars = ChartModule([{"Label" : "Amount of cars", "Color" : colour_spectrum[0]}])
+chart_N_cars = ChartModule([{"Label": "Amount of cars", "Color": colour_spectrum[0]}])
 
-server = ModularServer(RoadModel, [canvas_element, chart_velocity, chart_N_cars], 
-                        "Nagel-Schreckenberg model", 
-                        model_params=model_params)
+server = ModularServer(RoadModel, [canvas_element, chart_velocity, chart_N_cars], "Nagel-Schreckenberg model", model_params=model_params)
