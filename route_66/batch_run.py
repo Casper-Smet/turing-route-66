@@ -4,6 +4,7 @@ from mesa.batchrunner import BatchRunner
 
 from route_66.agent import CarAgent
 from route_66.model import RoadModel, get_average_velocity, get_standard_deviation_velocity
+from route_66.model import get_on_ramp_queue, get_waiting_queue
 
 
 def run_batch(N=[35], timer=[2], iterations=5):
@@ -35,8 +36,10 @@ def run_batch(N=[35], timer=[2], iterations=5):
         iterations=iterations,  # Iterations per combination of parameters
         max_steps=100,
         model_reporters={
-            "Average Velocity": get_average_velocity,
-            "Standard Deviation": get_standard_deviation_velocity})  # Average velocity per simulation
+            "Average Velocity": get_average_velocity,   # Average velocity per simulation
+            "Standard Deviation": get_standard_deviation_velocity,
+            "On Ramp Queue": get_on_ramp_queue,
+            "Waiting Queue": get_waiting_queue})
 
     batch_run.run_all()  # Run all simulations
     run_data = batch_run.get_model_vars_dataframe()  # Get DataFrame with collected data

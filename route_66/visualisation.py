@@ -1,7 +1,9 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import seaborn as sns
 
 from route_66.agent import CarAgent
+from route_66.batch_run import run_batch
 from route_66.model import RoadModel
 
 
@@ -46,3 +48,12 @@ def plot_simulation(steps, N, length=100, lanes=1, p=0.5, grid=False):
     ax.set_aspect('equal')
     plt.gca().invert_yaxis()
     plt.show()
+
+
+def plot_queues(N=[10, 25, 35], timer=[0, 1, 2, 4, 6], iterations=20):
+    run_data = run_batch(N=N, timer=timer, iterations=iterations)
+
+    sns.set("paper")
+    _, ax = plt.subplots()
+    sns.scatterplot("timer", "Waiting Queue", data=run_data, label="Waiting Queue, 2 cars per step", ax=ax)
+    sns.scatterplot("timer", "On Ramp Queue", hue="N", data=run_data, ax=ax)

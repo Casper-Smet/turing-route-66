@@ -37,6 +37,14 @@ def get_standard_deviation_velocity(model):
     return velocities.std()
 
 
+def get_on_ramp_queue(model):
+    return model.traffic_light.on_ramp_queue
+
+
+def get_waiting_queue(model):
+    return model.traffic_light.wait_queue
+
+
 class RoadModel(Model):
     """
     A model with a number of cars, Nagel-Schreckenberg
@@ -64,7 +72,9 @@ class RoadModel(Model):
             "Velocity": "velocity"},
             model_reporters={
                 "Average Velocity": "average_velocity",
-                "Amount of cars": "agent_count"})
+                "Amount of cars": "agent_count",
+                "On Ramp Queue": get_on_ramp_queue,
+                "Waiting Queue": get_waiting_queue})
 
         self.running = True
 
