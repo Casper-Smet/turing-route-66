@@ -34,12 +34,15 @@ def car_portrayal(agent):
     return portrayal
 
 
-model_params = {"N": UserSettableParameter("slider", "Cars", 1, 1, 99, description="Number of cars")}
+model_params = {"N": UserSettableParameter("slider", "Number of cars", 1, 1, 99, description="Number of cars"),
+                "timer": UserSettableParameter("slider", "Timing of the traffic light", 1, 1, 100, description="Timing of the traffic light")}
 
 canvas_element = CanvasGrid(car_portrayal, 100, 1, 800, 10)
 
 chart_velocity = ChartModule([{"Label": "Average Velocity", "Color": colour_spectrum[4]}])
 
+chart_on_ramp_queue = ChartModule([{"Label": "On Ramp Queue", "Color": colour_spectrum[2]}])
+
 chart_N_cars = ChartModule([{"Label": "Amount of cars", "Color": colour_spectrum[0]}])
 
-server = ModularServer(RoadModel, [canvas_element, chart_velocity, chart_N_cars], "Nagel-Schreckenberg model", model_params=model_params)
+server = ModularServer(RoadModel, [canvas_element, chart_velocity, chart_N_cars, chart_on_ramp_queue], "Nagel-Schreckenberg model", model_params=model_params)
