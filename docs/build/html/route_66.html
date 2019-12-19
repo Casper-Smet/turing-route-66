@@ -165,28 +165,8 @@ Adds the agents to the main road and updates the on ramp queue</p>
 <div class="section" id="module-route_66.batch_run">
 <span id="module-route-66-batch-run"></span><h2>Module: route_66.batch_run<a class="headerlink" href="#module-route_66.batch_run" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
-<dt id="route_66.batch_run.plot_batch">
-<code class="sig-prename descclassname">route_66.batch_run.</code><code class="sig-name descname">plot_batch</code><span class="sig-paren">(</span><em class="sig-param">N=[35], timer=[2], iterations=5</em><span class="sig-paren">)</span><a class="headerlink" href="#route_66.batch_run.plot_batch" title="Permalink to this definition">¶</a></dt>
-<dd><p>Plots each combination of N and timer.
-Each combination has its own coloured dot.
-Each combination is run for several iterations, thus several dots.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>N</strong> – List of each number of initial cars on the road</p></li>
-<li><p><strong>timer</strong> – List of each timing that needs to be simulated</p></li>
-<li><p><strong>iterations</strong> – Integer of the amount of times every single combination needs to be repeated</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>the DataFrame associated with the batch plot</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
 <dt id="route_66.batch_run.run_batch">
-<code class="sig-prename descclassname">route_66.batch_run.</code><code class="sig-name descname">run_batch</code><span class="sig-paren">(</span><em class="sig-param">N=[35], timer=[2], iterations=5</em><span class="sig-paren">)</span><a class="headerlink" href="#route_66.batch_run.run_batch" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">route_66.batch_run.</code><code class="sig-name descname">run_batch</code><span class="sig-paren">(</span><em class="sig-param">N=[35], timer=[2], iterations=5, max_steps=100</em><span class="sig-paren">)</span><a class="headerlink" href="#route_66.batch_run.run_batch" title="Permalink to this definition">¶</a></dt>
 <dd><p>Runs the simulation for every combination of N and timer
 N is the number of Cars on the road
 Timer is the amount of seconds the traffic light will wait to let agents through</p>
@@ -196,6 +176,7 @@ Timer is the amount of seconds the traffic light will wait to let agents through
 <li><p><strong>N</strong> – List of each number of initial cars on the road</p></li>
 <li><p><strong>timer</strong> – List of each timing that needs to be simulated</p></li>
 <li><p><strong>iterations</strong> – Integer of the amount of times every single combination needs to be repeated</p></li>
+<li><p><strong>max_steps</strong> – Maximum amount of steps each simulation will run</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -260,6 +241,12 @@ Timer is the amount of seconds the traffic light will wait to let agents through
 </dd></dl>
 
 <dl class="function">
+<dt id="route_66.model.get_on_ramp_queue">
+<code class="sig-prename descclassname">route_66.model.</code><code class="sig-name descname">get_on_ramp_queue</code><span class="sig-paren">(</span><em class="sig-param">model</em><span class="sig-paren">)</span><a class="headerlink" href="#route_66.model.get_on_ramp_queue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the total queue on the on ramp after the simulation</p>
+</dd></dl>
+
+<dl class="function">
 <dt id="route_66.model.get_standard_deviation_velocity">
 <code class="sig-prename descclassname">route_66.model.</code><code class="sig-name descname">get_standard_deviation_velocity</code><span class="sig-paren">(</span><em class="sig-param">model</em><span class="sig-paren">)</span><a class="headerlink" href="#route_66.model.get_standard_deviation_velocity" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the total standard deviation of the velocity over all agents</p>
@@ -271,6 +258,12 @@ Timer is the amount of seconds the traffic light will wait to let agents through
 <dd class="field-even"><p>The total standard deviation over all agents</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="route_66.model.get_waiting_queue">
+<code class="sig-prename descclassname">route_66.model.</code><code class="sig-name descname">get_waiting_queue</code><span class="sig-paren">(</span><em class="sig-param">model</em><span class="sig-paren">)</span><a class="headerlink" href="#route_66.model.get_waiting_queue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the total queue on the waiting ramp after the simulation</p>
 </dd></dl>
 
 </div>
@@ -290,6 +283,26 @@ Timer is the amount of seconds the traffic light will wait to let agents through
 </div>
 <div class="section" id="module-route_66.visualisation">
 <span id="module-route-66-visualisation"></span><h2>Module: route_66.visualisation<a class="headerlink" href="#module-route_66.visualisation" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="route_66.visualisation.plot_batch_run">
+<code class="sig-prename descclassname">route_66.visualisation.</code><code class="sig-name descname">plot_batch_run</code><span class="sig-paren">(</span><em class="sig-param">N=[35], timer=[2], iterations=5, max_steps=100</em><span class="sig-paren">)</span><a class="headerlink" href="#route_66.visualisation.plot_batch_run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots each combination of N and timer.
+Each combination has its own coloured dot.
+Each combination is run for several iterations, thus several dots.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>N</strong> – List of each number of initial cars on the road</p></li>
+<li><p><strong>timer</strong> – List of each timing that needs to be simulated</p></li>
+<li><p><strong>iterations</strong> – Integer of the amount of times every single combination needs to be repeated</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the DataFrame associated with the batch plot</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="function">
 <dt id="route_66.visualisation.plot_simulation">
 <code class="sig-prename descclassname">route_66.visualisation.</code><code class="sig-name descname">plot_simulation</code><span class="sig-paren">(</span><em class="sig-param">steps</em>, <em class="sig-param">N</em>, <em class="sig-param">length=100</em>, <em class="sig-param">lanes=1</em>, <em class="sig-param">p=0.5</em>, <em class="sig-param">grid=False</em><span class="sig-paren">)</span><a class="headerlink" href="#route_66.visualisation.plot_simulation" title="Permalink to this definition">¶</a></dt>
