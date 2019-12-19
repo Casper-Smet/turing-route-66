@@ -38,10 +38,12 @@ def get_standard_deviation_velocity(model):
 
 
 def get_on_ramp_queue(model):
+    """Gets the total queue on the on ramp after the simulation"""
     return model.traffic_light.on_ramp_queue
 
 
 def get_waiting_queue(model):
+    """Gets the total queue on the waiting ramp after the simulation"""
     return model.traffic_light.wait_queue
 
 
