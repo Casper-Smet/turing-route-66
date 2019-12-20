@@ -31,7 +31,7 @@ def plot_simulation(steps, N, length=100, lanes=1, p=0.5, grid=False):
     velocities["Position"] = velocities['Position'].apply(lambda x: x[0] + 0.5)
     velocities["Step"] = velocities["Step"].apply(lambda x: x + 0.5)
 
-    sns.set("notebook")
+    sns.set("poster")
     _, ax = plt.subplots(figsize=(8, 8))
     sns.scatterplot(velocities["Position"], velocities["Step"], marker="s", color="black", s=10, zorder=1, ax=ax)
 
@@ -66,7 +66,7 @@ def plot_batch_run(N=[35], timer=[2], iterations=5, max_steps=100):
     run_data = run_batch(N=N, timer=timer, iterations=iterations, max_steps=max_steps)
     run_data["Run"] += 1  # Run starts now at 1, better for plot limits
 
-    sns.set("notebook")
+    sns.set("poster")
     _, ax = plt.subplots(figsize=(12, 8))
     sns.boxplot(x="timer", y="Average Velocity", hue="N", data=run_data, ax=ax)
 
