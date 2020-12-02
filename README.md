@@ -11,6 +11,21 @@ To update the documentation, the command `make html` needs to be run. The docume
 
 Python 3.8.X is currently not supported. It is recommended to run the simulation in Python 3.6.x or 3.7.x.
 
+## Installing dependencies
+Both PiPy and Conda are supported. 
+
+### PiPy (pip)
+```
+pip install -r requirements.txt
+```
+
+### Conda 
+```
+conda env update -f env.yml  # To update current env
+ # or
+conda env create -f env.yml  # To create new env
+```
+
 ## Abstract
 
 With world poverty rates declining and access to private transportation methods increasing, road congestion is an ever-growing problem. Using the conducted experiment, we attempted to answer the following question: How does a traffic light on an on ramp and its timing affect throughput on a highway? In order to do this, we implemented and altered the Nagel-Schreckenberg congestion model. 
